@@ -6,15 +6,14 @@ import * as radar from './create-radar-contrib';
 import * as util from './utils';
 import * as type from './type';
 
-const width = 1280;
-const height = 850;
+const width = 1920;
+const height = 1080;
 
-const pieHeight = 200 * 1.3;
+const pieHeight = 200 * 1.3 * 1.4;
 const pieWidth = pieHeight * 2;
 
-const radarWidth = 400 * 1.3;
+const radarWidth = 400 * 1.3 * 1.25;
 const radarHeight = (radarWidth * 3) / 4;
-const radarX = width - radarWidth - 40;
 
 export const createSvg = (
     userInfo: type.UserInfo,
@@ -97,8 +96,8 @@ export const createSvg = (
         radar.createRadarContrib(
             svg,
             userInfo,
-            radarX,
-            70,
+            width - radarWidth - 70,
+            40,
             radarWidth,
             radarHeight,
             settings,
@@ -109,8 +108,8 @@ export const createSvg = (
         pie.createPieLanguage(
             svg,
             userInfo,
-            40,
-            height - pieHeight - 70,
+            100,
+            height - pieHeight - 120,
             pieWidth,
             pieHeight,
             settings,
@@ -120,11 +119,11 @@ export const createSvg = (
         const group = svg.append('g');
 
         const positionXContrib = (width * 3) / 10;
-        const positionYContrib = height - 20;
+        const positionYContrib = height - 40;
 
         group
             .append('text')
-            .style('font-size', '32px')
+            .style('font-size', '40px')
             .style('font-weight', 'bold')
             .attr('x', positionXContrib)
             .attr('y', positionYContrib)
@@ -137,7 +136,7 @@ export const createSvg = (
             : 'contributions';
         group
             .append('text')
-            .style('font-size', '24px')
+            .style('font-size', '32px')
             .attr('x', positionXContrib + 10)
             .attr('y', positionYContrib)
             .attr('text-anchor', 'start')
@@ -145,7 +144,7 @@ export const createSvg = (
             .text(contribLabel)
             .attr('fill', settings.foregroundColor);
 
-        const positionXStar = (width * 5) / 10;
+        const positionXStar = (width * 4.75) / 10;
         const positionYStar = positionYContrib;
 
         // icon of star
@@ -167,7 +166,7 @@ export const createSvg = (
 
         group
             .append('text')
-            .style('font-size', '32px')
+            .style('font-size', '40px')
             .style('font-weight', 'bold')
             .attr('x', positionXStar + 10)
             .attr('y', positionYStar)
@@ -177,7 +176,7 @@ export const createSvg = (
             .append('title')
             .text(userInfo.totalStargazerCount);
 
-        const positionXFork = (width * 6) / 10;
+        const positionXFork = (width * 5.5) / 10;
         const positionYFork = positionYContrib;
 
         // icon of fork
@@ -199,7 +198,7 @@ export const createSvg = (
 
         group
             .append('text')
-            .style('font-size', '32px')
+            .style('font-size', '40px')
             .style('font-weight', 'bold')
             .attr('x', positionXFork + 4)
             .attr('y', positionYFork)
@@ -221,7 +220,7 @@ export const createSvg = (
 
         group
             .append('text')
-            .style('font-size', '16px')
+            .style('font-size', '20px')
             .attr('x', width - 20)
             .attr('y', 20)
             .attr('dominant-baseline', 'hanging')
