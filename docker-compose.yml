@@ -1,0 +1,10 @@
+version: 3.8.0
+services:
+  web-express-contributions3d:
+    working_dir: /home/web-express-contributions3d
+    image: node
+    container_name: web-express-contributions3d
+    command: /bin/bash -c "npm i -g bun && bun src/app.ts"
+    volumes:
+      - ./:/home/web-express-contributions3d
+    env_file: ./.env
